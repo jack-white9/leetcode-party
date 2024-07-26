@@ -1,5 +1,6 @@
 import { FriendCard } from "./FriendCard/FriendCard";
 import { useEffect, useState } from "react";
+import { Box, Text, Heading } from "@chakra-ui/react";
 import "./App.css";
 
 const getUserData = async (user) => {
@@ -39,7 +40,12 @@ export const App = () => {
 
   return (
     <main>
-      <h1 className="main-header">LeetcodeParty</h1>
+      <Heading align="center" margin="25">
+        Leetcode
+        <Box as="Heading" color="#ffa115">
+          Party
+        </Box>
+      </Heading>
       {users.map((user) => (
         <FriendCard key={user.id} user={user} isLoading={isLoading} />
       ))}

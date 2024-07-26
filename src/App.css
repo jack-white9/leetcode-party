@@ -6,3 +6,17 @@ main {
 .main-header {
   text-align: center;
 }
+
+@media (max-width: 860px) {
+  main {
+    width: 85vw;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}

@@ -50,15 +50,19 @@ export const FriendCard = ({ user }) => {
     <Stack spacing="4">
       <Card
         key={user.id}
-        variant="outline"
+        variant="elevated"
         paddingTop="15"
         paddingBottom="15"
         paddingLeft="10"
         paddingRight="10"
       >
         <CardHeader>
-          <Flex justify="space-between" align="center">
-            <Box>
+          <Flex
+            justify="space-between"
+            align="center"
+            direction={{ base: "column", md: "row" }}
+          >
+            <Box align="center">
               <Heading size="md">{user.id}</Heading>
               <Text size="sm" as="i" color="grey">
                 Last solve: {getLatestSolve()}
