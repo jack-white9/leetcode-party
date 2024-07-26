@@ -62,7 +62,7 @@ export const FriendCard = ({ user }) => {
             align="center"
             direction={{ base: "column", md: "row" }}
           >
-            <Box align="center">
+            <Box align="center" width="40%">
               <Heading size="md">{user.id}</Heading>
               <Text size="sm" as="i" color="grey">
                 Last solve: {getLatestSolve()}
