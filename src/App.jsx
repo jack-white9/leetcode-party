@@ -1,6 +1,6 @@
 import { FriendCard } from "./FriendCard/FriendCard";
 import { useEffect, useState } from "react";
-import { Box, Text, Heading } from "@chakra-ui/react";
+import { Box, Skeleton, Stack, Heading } from "@chakra-ui/react";
 import "./App.css";
 
 const getUserData = async (user) => {
@@ -46,9 +46,13 @@ export const App = () => {
           Party
         </Box>
       </Heading>
-      {users.map((user) => (
-        <FriendCard key={user.id} user={user} isLoading={isLoading} />
-      ))}
+      {isLoading ? (
+        <Stack>
+          <Skeleton height="118px" />
+        </Stack>
+      ) : (
+        users.map((user) => <FriendCard key={user.id} user={user} />)
+      )}
     </main>
   );
 };
