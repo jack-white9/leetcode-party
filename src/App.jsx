@@ -24,6 +24,10 @@ export const App = () => {
     }
   };
 
+  const handleUserDelete = (userId) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+  };
+
   const getUserData = async (user) => {
     const url = "https://leetcode-stats-api.herokuapp.com/" + user;
     try {
@@ -69,7 +73,13 @@ export const App = () => {
           <Skeleton height="118px" />
         </Stack>
       ) : (
-        users.map((user) => <FriendCard key={user.id} user={user} />)
+        users.map((user) => (
+          <FriendCard
+            key={user.id}
+            user={user}
+            handleUserDelete={handleUserDelete}
+          />
+        ))
       )}
     </Flex>
   );

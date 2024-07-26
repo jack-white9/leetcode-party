@@ -6,9 +6,10 @@ import {
   Heading,
   Text,
   Stack,
+  Button,
 } from "@chakra-ui/react";
 
-export const FriendCard = ({ user }) => {
+export const FriendCard = ({ user, handleUserDelete }) => {
   const getLatestSolve = () => {
     // Get largest time from epoch object
     const epochTimes = Object.keys(user.submissionCalendar).map(Number);
@@ -55,6 +56,8 @@ export const FriendCard = ({ user }) => {
         paddingBottom="15"
         paddingLeft="10"
         paddingRight="10"
+        position="relative"
+        _hover={{ "& .delete-button": { display: "block" } }}
       >
         <CardHeader>
           <Flex
@@ -114,6 +117,18 @@ export const FriendCard = ({ user }) => {
             </Text>
           </Flex>
         </CardHeader>
+        <Button
+          className="delete-button"
+          colorScheme="red"
+          size="xs"
+          position="absolute"
+          top="10px"
+          right="10px"
+          display="none"
+          onClick={() => handleUserDelete(user.id)}
+        >
+          Delete
+        </Button>
       </Card>
     </Stack>
   );
