@@ -1,6 +1,6 @@
 import { FriendCard } from "./FriendCard/FriendCard";
 import { useEffect, useState } from "react";
-import { Box, Skeleton, Stack, Heading } from "@chakra-ui/react";
+import { Box, Skeleton, Stack, Heading, Input, Flex } from "@chakra-ui/react";
 import "./App.css";
 
 const getUserData = async (user) => {
@@ -22,6 +22,17 @@ const getUserData = async (user) => {
 export const App = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [value, setValue] = useState("");
+  const handleChange = (event) => setValue(event.target.value);
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      const newUser = await getUserData(value);
+      if (newUser) {
+        setUsers((prevUsers) => [newUser, ...prevUsers]);
+        console.log(users); // Note: This might not log the updated state immediately
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -39,13 +50,25 @@ export const App = () => {
   }, []);
 
   return (
-    <main>
-      <Heading align="center" margin="25">
+    <Flex
+      direction="column"
+      width={{ base: "90vw", sm: "85vw", md: "60vw", lg: "50vw" }}
+      margin="0 auto"
+      gap="5"
+    >
+      <Heading align="center" marginTop="25">
         Leetcode
         <Box as="Heading" color="#ffa115">
           Party
         </Box>
       </Heading>
+      <Input
+        placeholder="Add a friend..."
+        size="lg"
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        value={value}
+      />
       {isLoading ? (
         <Stack>
           <Skeleton height="118px" />
@@ -53,6 +76,6 @@ export const App = () => {
       ) : (
         users.map((user) => <FriendCard key={user.id} user={user} />)
       )}
-    </main>
+    </Flex>
   );
 };
