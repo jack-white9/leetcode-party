@@ -1,11 +1,11 @@
 import {
   Card,
   CardHeader,
-  CardBody,
-  Stack,
+  Flex,
+  Box,
   Heading,
   Text,
-  Skeleton,
+  Stack,
 } from "@chakra-ui/react";
 
 export const FriendCard = ({ user }) => {
@@ -46,23 +46,70 @@ export const FriendCard = ({ user }) => {
     return formattedDate;
   };
 
-  console.log(user);
-
   return (
     <Stack spacing="4">
-      <Card key={user.id} variant="outline">
+      <Card
+        key={user.id}
+        variant="outline"
+        paddingTop="15"
+        paddingBottom="15"
+        paddingLeft="10"
+        paddingRight="10"
+      >
         <CardHeader>
-          <Heading size="md">{user.id}</Heading>
-          <Text size="sm" as="i">
-            Last solve: {getLatestSolve()}
-          </Text>
+          <Flex justify="space-between" align="center">
+            <Box>
+              <Heading size="md">{user.id}</Heading>
+              <Text size="sm" as="i" color="grey">
+                Last solve: {getLatestSolve()}
+              </Text>
+            </Box>
+            <Text
+              display="flex"
+              flexDirection={"column"}
+              textAlign={"center"}
+              color="#27241c"
+            >
+              {user.easySolved}
+              <Box as="b" color="green">
+                easy
+              </Box>
+            </Text>
+            <Text
+              display="flex"
+              flexDirection={"column"}
+              textAlign={"center"}
+              color="#27241c"
+            >
+              {user.mediumSolved}
+              <Box as="b" color="darkorange">
+                medium
+              </Box>
+            </Text>
+            <Text
+              display="flex"
+              flexDirection={"column"}
+              textAlign={"center"}
+              color="#27241c"
+            >
+              {user.hardSolved}
+              <Box as="b" color="tomato">
+                hard
+              </Box>
+            </Text>
+            <Text
+              display="flex"
+              flexDirection={"column"}
+              textAlign={"center"}
+              color="#27241c"
+            >
+              {user.totalSolved}
+              <Box as="b" color="black">
+                total
+              </Box>
+            </Text>
+          </Flex>
         </CardHeader>
-        <CardBody>
-          <Text>Total: {user.totalSolved}</Text>
-          <Text>Easy: {user.easySolved}</Text>
-          <Text>Medium: {user.mediumSolved}</Text>
-          <Text>Hard: {user.hardSolved}</Text>
-        </CardBody>
       </Card>
     </Stack>
   );
