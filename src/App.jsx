@@ -45,6 +45,17 @@ export const App = () => {
   };
 
   useEffect(() => {
+    const fetchUsers = async () => {
+      const updatedUsers = await Promise.all(
+        users.map((user) => getUserData(user.id))
+      );
+      setUsers(updatedUsers);
+    };
+
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
